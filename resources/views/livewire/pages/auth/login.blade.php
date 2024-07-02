@@ -35,10 +35,10 @@ new #[Layout('layouts.guest')] class extends Component
                 <img src="{{ asset('svg/github-icon.svg') }}" class="w-5 h-5 mr-1" alt="GitHub Icon"/>
                 Sign in with GitHub
             </a>
-            {{-- <a href="/auth/google/redirect" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+            <a href="/auth/google/redirect" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
                 <img src="{{ asset('svg/google-icon.svg') }}" class="w-5 h-5 mr-1" alt="GitHub Icon"/>
                 Sign in with Google
-            </a> --}}
+            </a>
         </div>
         
         <!-- Email Address -->
