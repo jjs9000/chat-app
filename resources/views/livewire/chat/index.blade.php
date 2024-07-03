@@ -55,11 +55,11 @@
                     </div>
                     <div class="flex items-center pr-3 space-x-4">
                         <!-- Search icon -->
-                        <button class="p-2 -m-2 hover:bg-gray-500 hover:rounded-full">
+                        <button class="p-2 -m-2">
                             <img src="{{ asset('svg/search-icon.svg') }}" class="w-6 h-6" alt="Search icon" />
                         </button>
                         <!-- Options icon -->
-                        <button class="p-2 -m-2 hover:bg-gray-500 hover:rounded-full">
+                        <button class="p-2 -m-2">
                             <img src="{{ asset('svg/option-icon.svg') }}" class="w-6 h-6" alt="Option icon" />
                         </button>
                     </div>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="flex flex-col items-end justify-end mb-4">
                         <div>
-                            <div class="max-w-lg p-4 bg-[#008080] rounded-md">
+                            <div class="max-w-lg p-4 bg-[#218AFF] rounded-md">
                                 <div>
                                     <p class="text-sm text-white">
                                         Hello, how are you? This is a long text example to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.
