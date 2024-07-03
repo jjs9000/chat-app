@@ -45,31 +45,79 @@
             
             <!-- Chat Box -->
             <div class="flex flex-col w-full h-full bg-white rounded-lg shadow-md md:w-3/4">
-                <div class="flex items-center p-4 mb-4 bg-[#008080] rounded-t-lg">
-                    <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
-                    <div class="ml-4">
-                        <p class="text-lg text-white">User 1</p>
-                        <p class="text-sm text-gray-300">Online</p>
+                <div class="flex items-center justify-between p-4 mb-4 bg-[#008080] rounded-t-lg">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
+                        <div class="ml-4">
+                            <p class="text-lg text-white">User 1</p>
+                            <p class="text-sm text-gray-300"><span class="text-green-500">●</span> Online</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center pr-3 space-x-4">
+                        <!-- Search icon -->
+                        <button class="p-2 -m-2 hover:bg-gray-500 hover:rounded-full">
+                            <img src="{{ asset('svg/search-icon.svg') }}" class="w-6 h-6" alt="Search icon" />
+                        </button>
+                        <!-- Options icon -->
+                        <button class="p-2 -m-2 hover:bg-gray-500 hover:rounded-full">
+                            <img src="{{ asset('svg/option-icon.svg') }}" class="w-6 h-6" alt="Option icon" />
+                        </button>
                     </div>
                 </div>
                 
                 <div class="flex-1 p-6">
-                    <div class="flex justify-start mb-4">
-                        <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
-                        <div class="p-4 ml-4 bg-gray-200 rounded-lg">
-                            <p class="text-sm">Hello, how are you?</p>
+                    <div class="flex flex-col items-start justify-start mb-4">
+                        <div>
+                            <div class="max-w-lg p-4 bg-gray-200 rounded-md">
+                                <div>
+                                    <p class="text-sm">
+                                        Hello, how are you? This is a long text example to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex flex-row justify-between mt-2">
+                                <div class="flex flex-row items-center ml-1 space-x-2">
+                                    <div class="w-5 h-5 bg-gray-400 rounded-full"></div>
+                                    <p class="text-xs text-gray-900">User 1</p>
+                                </div>
+                                <p class="text-xs text-gray-500">09:12 AM</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex justify-end mb-4">
-                        <div class="p-4 text-white bg-blue-500 rounded-lg">
-                            <p class="text-sm">I'm good, thanks!</p>
+                    <div class="flex flex-col items-end justify-end mb-4">
+                        <div>
+                            <div class="max-w-lg p-4 bg-[#008080] rounded-md">
+                                <div>
+                                    <p class="text-sm text-white">
+                                        Hello, how are you? This is a long text example to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.to demonstrate vertical overflow. This text should start scrolling vertically if it exceeds the height of the container.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex flex-row justify-between mt-2">
+                                <div class="flex flex-row items-center space-x-1">
+                                    <p class="text-xs text-gray-500">09:12 AM</p>
+                                    <img src="{{ asset('svg/double-tick-icon.svg') }}" class="w-6 h-6" alt="Attachment icon" />
+                                </div>
+                                <div class="flex flex-row items-center mr-1 space-x-2">
+                                    <p class="text-xs text-gray-900">User 2</p>
+                                    <div class="w-5 h-5 bg-gray-400 rounded-full"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-10 h-10 ml-4 bg-gray-400 rounded-full"></div>
                     </div>
-                    <!-- Add more messages as needed -->
                 </div>
-                <div class="p-4 border-t border-gray-300">
-                    <input type="text" placeholder="Type your message..." class="w-full p-2 border border-gray-300 rounded-lg">
+                <div class="relative flex items-center p-4">
+                    <input type="text" placeholder="Type your message" class="w-full p-2 pl-4 bg-gray-100 border border-gray-100 rounded-lg placeholder:text-sm">
+                    <div class="absolute flex items-center space-x-0 right-6">
+                        <!-- Attachment icon button -->
+                        <button class="p-2 -m-2 hover:bg-gray-300 hover:rounded-full">
+                            <img src="{{ asset('svg/attachment-icon.svg') }}" class="w-5 h-5" alt="Attachment icon" />
+                        </button>
+                        <!-- Emoji icon button -->
+                        <button class="p-2 -m-2 hover:bg-gray-300 hover:rounded-full">
+                            <img src="{{ asset('svg/emoji-icon.svg') }}" class="w-5 h-5" alt="Emoji icon" />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
