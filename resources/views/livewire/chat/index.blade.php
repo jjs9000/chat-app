@@ -23,28 +23,37 @@
             
             <!-- Chat List -->
             <div class="w-full p-4 bg-white rounded-lg shadow-md md:w-1/4">
-                <div class="mb-4 text-2xl">Chat Rooms</div>
-                <ul class="space-y-4">
-                    <li class="flex items-center space-x-4">
-                        <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
-                        <div>
-                            <p class="text-lg">User 1</p>
-                            <p class="text-sm text-gray-500">Last message...</p>
+                <div class="mb-4 text-2xl">Friends</div>
+                <ul class="space-y-0">
+                    <li class="flex items-center justify-between p-2 rounded-lg hover:bg-gray-200">
+                        <a href="#" class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
+                            <div>
+                                <p class="font-semibold text-md">User 1</p>
+                                <p class="text-sm text-gray-500">Last message...</p>
+                            </div>
+                        </a>
+                        <div class="flex flex-col items-end justify-end">
+                            <span class="text-sm text-gray-500">09:14 AM</span>
+                            <span class="w-5 h-5 text-sm text-center text-white bg-[#DC143C] rounded-full">1</span>
                         </div>
                     </li>
-                    <li class="flex items-center space-x-4">
-                        <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
-                        <div>
-                            <p class="text-lg">User 2</p>
-                            <p class="text-sm text-gray-500">Last message...</p>
-                        </div>
+                    <li class="flex items-center justify-between p-2 rounded-lg hover:bg-gray-200">
+                        <a href="#" class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
+                            <div>
+                                <p class="font-semibold text-md">User 2</p>
+                                <p class="text-sm text-gray-500">Last message...</p>
+                            </div>
+                        </a>
+                        <span class="text-sm text-gray-500">10:22 AM</span>
                     </li>
                     <!-- Add more users as needed -->
                 </ul>
             </div>
             
             <!-- Chat Box -->
-            <div class="flex flex-col w-full h-full bg-white rounded-lg shadow-md md:w-3/4">
+            <div class="flex flex-col w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] rounded-lg shadow-md md:w-3/4">
                 <div class="flex items-center justify-between p-4 mb-4 bg-[#008080] rounded-t-lg">
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
