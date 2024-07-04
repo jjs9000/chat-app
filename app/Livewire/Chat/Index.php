@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Chat;
 
+use App\Models\User;
 use App\Events\SendMessage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\On;
@@ -12,6 +13,18 @@ class Index extends Component
     use LivewireAlert;
 
     public string $message;
+    public $users;
+    public $selectedChat;
+
+    public function mount()
+    {
+        $this->users = User::where('id', '!=', auth()->id())->get();
+    }
+
+    public function showChat($userId)
+    {
+        $this->selectedChat = User::find($userId);
+    }
 
     public function triggerEvent(): void
     {
@@ -27,6 +40,8 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.chat.index');
+        return view('livewire.chat.index',[
+            'users' => $this->users
+        ]);
     }
 }
