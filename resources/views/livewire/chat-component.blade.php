@@ -21,7 +21,7 @@
           </div>
       </div>
       
-      <div id="messages-container" class="[@media(max-width:1920px)]:scrollbar-hide flex-1 p-4 overflow-y-auto md:p-6">
+      <div id="messages-container" class="[@media(max-width:1920px)]:scrollbar-hide flex-1 p-4 overflow-y-auto md:p-6 relative">
           @foreach ($messages as $message)
           <div class="mb-4 {{ $message['sender'] == auth()->user()->name ? 'text-right' : 'text-left' }}">
               <div class="inline-block max-w-lg p-3 md:max-w-lg md:p-4 {{ $message['sender'] == auth()->user()->name ? 'bg-[#218AFF] text-white' : 'bg-gray-200' }} rounded-md">
@@ -32,7 +32,12 @@
             </div>
           </div>
           @endforeach
-      </div>
+        </div>
+
+        <!-- Typing indicator moved above the container for icons and textarea -->
+        <div class="p-2 pl-4 text-sm text-left text-gray-500" id="typingIndicator" style="display: none;">
+            {{ $user->name }} is typing...
+        </div>
       
       <form wire:submit.prevent="sendMessage" class="p-4">
         <div class="relative flex items-center">
@@ -50,7 +55,7 @@
                     </button>
                 </div>
                 <!-- Textarea field adjusted for icon space -->
-                <textarea wire:model="message" placeholder="Type your message" class="[@media(max-width:1920px)]:scrollbar-hide flex-1 p-2 overflow-auto bg-gray-200 border border-gray-200 rounded-lg resize-none placeholder:text-xs md:placeholder:text-sm" style="margin-left: 10px; padding-right: 50px; height: auto; min-height: 40px; max-height: 150px; /* Adjust max-height as needed */" oninput="this.style.height = '';this.style.height = Math.min(this.scrollHeight, 150) + 'px'"></textarea>
+                <textarea id="messageInput" wire:model="message" placeholder="Type your message" class="[@media(max-width:1920px)]:scrollbar-hide flex-1 p-2 overflow-auto bg-gray-200 border border-gray-200 rounded-lg resize-none placeholder:text-xs md:placeholder:text-sm" style="margin-left: 10px; padding-right: 50px; height: auto; min-height: 40px; max-height: 150px; /* Adjust max-height as needed */" oninput="this.style.height = '';this.style.height = Math.min(this.scrollHeight, 150) + 'px'"></textarea>
             </div>
             <!-- Send button on the right within the textarea -->
             <div class="absolute right-4 md:right-6">
@@ -72,5 +77,45 @@
         behavior: 'smooth'
       });
     }
+
+    const receiverId = @json($receiver_id);
+    const senderId = @json(auth()->id());
+    const receiverName = @json($user->name);
+    const userName = @json(auth()->user()->name);
+    const messageInput = document.getElementById('messageInput');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    let typingTimeout;
+
+    // Listen for input events on the textarea
+    messageInput.addEventListener('input', () => {
+        Echo.private(`chat-channel.${receiverId}`)
+            .whisper('typing', {
+                name: userName,
+                id: receiverId,
+                receiverName: receiverName 
+            });
+    });
+
+    // Listen for typing whispers
+    Echo.private(`chat-channel.${senderId}`)
+        .listenForWhisper('typing', (e) => {
+            // Show typing indicator
+            typingIndicator.style.display = 'block';
+
+            // Hide typing indicator after 2 seconds of inactivity
+            clearTimeout(typingTimeout);
+            typingTimeout = setTimeout(() => {
+                typingIndicator.style.display = 'none';
+            }, 2000);
+        });
+
+    // Add keypress event listener to the textarea
+    document.getElementById("messageInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault(); // Prevent the default action to avoid newline
+        this.closest("form").dispatchEvent(new Event('submit', {cancelable: true})); // Programmatically submit the form
+      }
+    });
   });
 </script>
