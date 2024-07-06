@@ -18,7 +18,13 @@
                                 <ul class="space-y-2">
                                     <li class="flex items-center justify-between p-2 rounded-lg hover:bg-gray-200">
                                         <a href="{{ route('chat', $user->id) }}" class="flex items-center space-x-4">
-                                            <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
+                                            @if($user->profile_photo)
+                                                <!-- Correctly access the user's profile photo using the 'profile_photo_path' attribute -->
+                                                <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="{{ $user->name }}'s profile photo" class="object-cover w-10 h-10 rounded-full">
+                                            @else
+                                                <!-- Fallback or default image if no profile photo is set -->
+                                                <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
+                                            @endif
                                             <div>
                                                 <p class="font-semibold text-md">{{ $user->name }}</p>
                                                 <p class="text-sm text-gray-500">Last message ...</p>
