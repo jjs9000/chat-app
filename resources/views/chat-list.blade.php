@@ -23,7 +23,7 @@
                                                 <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="{{ $user->name }}'s profile photo" class="object-cover w-10 h-10 rounded-full">
                                             @else
                                                 <!-- Fallback or default image if no profile photo is set -->
-                                                <div class="w-10 h-10 bg-gray-400 rounded-full"></div>
+                                                <img src="https://via.placeholder.com/150" alt="Profile Picture Placeholder" class="w-10 h-10 rounded-full">
                                             @endif
                                             <div>
                                                 <p class="font-semibold text-md">{{ $user->name }}</p>
