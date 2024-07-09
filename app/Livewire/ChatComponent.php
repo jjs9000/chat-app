@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Events\MessageSendEvent;
 use App\Models\Message;
 use App\Models\User;
-use Carbon\Carbon;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -51,14 +50,11 @@ class ChatComponent extends Component
         $chatMessage->sender_id = $this->sender_id;
         $chatMessage->receiver_id = $this->receiver_id;
         $chatMessage->message = $this->message;
+
         $chatMessage->save();
-
         $this->appendChatMessage($chatMessage);
-        
         broadcast(new MessageSendEvent($chatMessage))->toOthers();
-
-        $this->message = '';
-
+        $this->reset('message');
     }
 
     #[On('echo-private:chat-channel.{sender_id},MessageSendEvent')]
@@ -77,7 +73,7 @@ class ChatComponent extends Component
             'message' => $message->message,
             'sender' => $message->sender->name,
             'receiver' => $message->receiver->name,
-            'created_at' => $message->created_at->diffForHumans()
+            'created_at' => $message->created_at->setTimezone('Asia/Kuala_Lumpur')->format('h:i A'),
         ];
     }
 }

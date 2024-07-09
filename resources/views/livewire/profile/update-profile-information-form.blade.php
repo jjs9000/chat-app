@@ -6,10 +6,12 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 new class extends Component
 {
     use WithFileUploads;
+    use LivewireAlert;
 
     public string $name = '';
     public string $email = '';
@@ -48,11 +50,12 @@ new class extends Component
             $path = $this->profile_photo->storeAs('profile-photos', $imageName, 'public');
             
             $user->profile_photo = $path;
+            $this->profile_photo = null;
         }
 
         $user->save();
 
-        $this->dispatch('profile-updated', name: $user->name);
+        $this->alert('success', 'Profile successfully updated');
     }
 
     /**
@@ -87,9 +90,10 @@ new class extends Component
 
     <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
 
-        <div>
+        <div class="relative flex flex-col w-full max-w-sm gap-1 text-slate-700 dark:text-slate-300">
             <x-input-label for="profile_photo" :value="__('Profile Photo')" />
-            <input type="file" wire:model="profile_photo" id="profile_photo" name="profile_photo" class="block w-full mt-1">
+            <input wire:model="profile_photo" id="fileInput" type="file" class="w-full max-w-md text-sm text-gray-600 border border-gray-300 bg-slate-100/50 overflow-clip rounded-xl file:mr-4 file:cursor-pointer file:border-none file:bg-gray-800 file:px-4 file:py-2 file:font-medium file:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 disabled:cursor-not-allowed disabled:opacity-75" />
+            <small class="pl-0.5 text-gray-400">PNG, JPG, WebP - Max 1MB</small>
             <x-input-error class="mt-2" :messages="$errors->get('profile_photo')" />
         </div>
 
@@ -131,10 +135,6 @@ new class extends Component
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            <x-action-message class="me-3" on="profile-updated">
-                {{ __('Saved.') }}
-            </x-action-message>
         </div>
     </form>
 </section>
